@@ -36,7 +36,6 @@ class _authScreenState extends State<authScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _email.dispose();
     _name.dispose();
@@ -48,7 +47,7 @@ class _authScreenState extends State<authScreen> {
       backgroundColor: GlobalVariables.greyBackgroundCOlor,
       body: SafeArea(
         child: Padding(
-          padding:const EdgeInsets.all(20),
+          padding:const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             
@@ -56,6 +55,7 @@ class _authScreenState extends State<authScreen> {
               const Text('Welcome Aboard!' , style: TextStyle(fontWeight: FontWeight.w600,fontSize: 25),),
               const SizedBox(height: 20,),
               ListTile(
+                tileColor: auth == Auth.signup ? GlobalVariables.backgroundColor : GlobalVariables.greyBackgroundCOlor,
                 title: const Text('Create Account', style: TextStyle(fontWeight: FontWeight.w600),),
                 leading: Radio(
                   activeColor: GlobalVariables.secondaryColor,
@@ -91,6 +91,7 @@ class _authScreenState extends State<authScreen> {
 
                 ListTile(
                 title: const Text('SignIn to Account', style: TextStyle(fontWeight: FontWeight.w600),),
+                tileColor: auth == Auth.signin ? GlobalVariables.backgroundColor : GlobalVariables.greyBackgroundCOlor,
                 leading: Radio(
                   activeColor: GlobalVariables.secondaryColor,
                   value: Auth.signin,
@@ -102,6 +103,25 @@ class _authScreenState extends State<authScreen> {
                   },
                 ),
               ),
+              if(auth==Auth.signin)
+                Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.all(8.0),
+                  child: Form(
+                    key: _signinkey,
+                    child: Column(
+                      
+                      children: [
+                        const SizedBox(height: 10,),
+                        CustomTextField(controller: _email, hint: 'Email',),
+                        const SizedBox(height: 10,),
+                        CustomTextField(controller: _pass, hint: 'Password',),
+                        const SizedBox(height: 10,),
+                        CommonButton(text: 'SignIn', action: (){log('hafsa signin');})
+                      ],
+                    ),
+                  ),
+                ),
             ],
           ),
         ),
