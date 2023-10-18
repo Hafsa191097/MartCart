@@ -1,7 +1,5 @@
 // ignore: file_names
 
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -27,7 +25,9 @@ class CustomTextField extends StatelessWidget {
         ),
       ),
       validator: (val){
-        
+        if(val == null || val.isEmpty){
+          return 'Enter Your $hint';
+        }else{return null;}
       },
     );
   }
